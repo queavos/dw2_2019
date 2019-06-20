@@ -2,7 +2,7 @@
 require_once "../modelos/Articulos.class.php";
 $datos= new Articulos($conex);
 $rows=$datos->buscarTodo();
- //$total=mysqli_affected_rows($conex);
+$total=mysqli_affected_rows($conex);
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -17,7 +17,7 @@ $rows=$datos->buscarTodo();
         <th>Titulo</th>
         <th>Contenido</th>
         <th>Fecha</th>
-        <th colspan=2><a href="new.php" >Editar</a></th>
+        <th colspan=2><a href="new.php" >Nuevo</a></th>
       </tr>
 <?php while ($row=mysqli_fetch_array($rows,MYSQLI_ASSOC)) { ?>
 <tr>
@@ -25,8 +25,8 @@ $rows=$datos->buscarTodo();
 <td><?php echo $row["titulo"]; ?></td>
 <td><?php echo $row["contenido"]; ?></td>
 <td><?php echo $row["fecha"]; ?></td>
-<td><a href="editar" >Editar</a></td>
-<td><a href="borrar" >Borrar</a></td>
+<td><a href="edit.php?id=<?php echo $row["id"]; ?>" >Editar</a></td>
+<td><a href="borrar.php?id=<?php echo $row["id"]; ?>" >Borrar</a></td>
 </tr>
   <?php
 }
